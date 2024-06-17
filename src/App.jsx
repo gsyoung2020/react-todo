@@ -47,7 +47,7 @@ function App() {
       <ul>
         {TodoList.map(function (item) {
           return (<> 
-        <p key={item.id}>{item.title}</p>
+        <p key={item.id}>{item.title}<br></br>{item.date}</p>
           </>)
         })}
       </ul>
