@@ -13,7 +13,7 @@ const welcome = {
 
 const title = 'React';
 
-const TodoList = [
+const todoList = [
   {
     id: 1,
     title: 'Complete assignment',
@@ -45,9 +45,9 @@ function App() {
 
       <hr />
       <ul>
-        {TodoList.map(function (item) {
+        {todoList.map(function (item) {
           return (<> 
-        <p key={item.id}>{item.title}<br></br>{item.date}</p>
+        <li key={item.id}>{item.title}</li>
           </>)
         })}
       </ul>
