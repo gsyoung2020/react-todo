@@ -2,21 +2,31 @@ import * as React from "react";
 import TodoList from "./TodoList.jsx";
 import AddTodoForm from "./AddTodoForm.jsx";
 import { useState } from "react";
+import Quickmaths from "./Quickmaths.jsx";
 
 // const title = 'React';
 
 function App() {
-  const [newTodo, setNewTodo] = useState("");
+  const [colorPicked, pickedColor] = useState("");
+  const [todoList, setTodoList] = useState([]);
+
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  };
 
   return (
     <div>
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={setNewTodo} />
-      <p>{newTodo}</p>
-      <TodoList />
-      <Search />
+      <AddTodoForm onAddTodo={addTodo} />
 
-      <hr />
+      <TodoList todoList={todoList} />
+      <Search />
+      {/* <Quickmaths
+        one={1}
+        two={5}
+        colour={colorPicked}
+        colorChoosen={pickedColor}
+      /> */}
     </div>
   );
 }
