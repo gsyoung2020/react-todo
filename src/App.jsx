@@ -21,12 +21,14 @@ function App() {
 
       <TodoList todoList={todoList} />
       <Search />
-      {/* <Quickmaths
-        one={1}
-        two={5}
-        colour={colorPicked}
-        colorChoosen={pickedColor}
-      /> */}
+      {
+        <Quickmaths
+          one={1}
+          two={5}
+          colour={colorPicked}
+          colorChoosen={pickedColor}
+        />
+      }
     </div>
   );
 }
