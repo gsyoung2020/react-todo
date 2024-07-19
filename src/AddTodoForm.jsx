@@ -7,7 +7,6 @@ export default function AddTodoForm({ onAddTodo }) {
   const handleTitleChange = (event) => {
     var newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
-    //event.target.elements.title.value
   };
 
   const handleAddTodo = (event) => {
