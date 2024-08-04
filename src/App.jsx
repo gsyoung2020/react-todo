@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 // const title = 'React';
 /* Remembe to change the code inside this function to varaibles */
 const useSemiPersistentState = () => {
-  const [todoList, setTodoList] = useState(
-    JSON.parse(localStorage.getItem("savedTodoList")) || []
-  );
+  var onLoadList = JSON.parse(localStorage.getItem("savedTodoList"));
+
+  const [todoList, setTodoList] = useState(onLoadList || []);
   console.log(JSON.stringify(todoList));
   useEffect(() => {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList));
