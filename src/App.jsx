@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from "react";
+import TodoList from "./TodoList.jsx";
+import AddTodoForm from "./AddTodoForm.jsx";
+import { useState, useEffect } from "react";
+
+// const title = 'React';
+/* Remembe to change the code inside this function to varaibles */
+const useSemiPersistentState = () => {
+  var onLoadList = JSON.parse(localStorage.getItem("savedTodoList"));
+
+  const [todoList, setTodoList] = useState(onLoadList || []);
+  console.log(JSON.stringify(todoList));
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
+
+  return [todoList, setTodoList];
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todoList, setTodoList] = useSemiPersistentState();
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  };
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(newTodoList);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Todo List</h1>
+      <AddTodoForm onAddTodo={addTodo} />
+
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      <Search />
     </>
-  )
+  );
 }
 
-export default App
+function Search() {
+  const handleChange = (event) => {
+    console.log(event);
+    console.log(event.target.value);
+  };
+
+  const blur = (event) => {
+    console.log(event);
+    console.log(event.target.value);
+    console.log("blur");
+  };
+
+  return (
+    <>
+      <label htmlFor="search">Search: </label>
+      <input
+        id="search"
+        type="text"
+        onChange={handleChange}
+        onBlur={blur}
+      />
+    </>
+  );
+}
+
+export default App;
