@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+
 export default function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState("");
 
@@ -10,15 +11,42 @@ export default function AddTodoForm({ onAddTodo }) {
     setTodoTitle(newTodoTitle);
   };
 
-  const handleAddTodo = (event) => {
+  //Try Adding The The text from submit to the airtable
+
+  const handleAddTodo = async (event) => {
     event.preventDefault();
     console.log(todoTitle);
     console.log(event);
-    onAddTodo({
-      title: todoTitle,
-      id: Date.now(),
-    });
-    setTodoTitle("");
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${
+          import.meta.env.VITE_AIRTABLE_API_TOKEN
+        }`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fields: {
+          title: todoTitle,
+        },
+      }),
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      console.log("Success:", result);
+      setTodoTitle("");
+      onAddTodo(); // Trigger re-fetch in App.jsx
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -33,3 +61,14 @@ export default function AddTodoForm({ onAddTodo }) {
     </form>
   );
 }
+
+// const handleAddTodo = (event) => {
+//   event.preventDefault();
+//   console.log(todoTitle);
+//   console.log(event);
+//   onAddTodo({
+//     title: todoTitle,
+//     id: Date.now(),
+//   });
+//   setTodoTitle("");
+// };

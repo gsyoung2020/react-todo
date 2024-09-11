@@ -3,11 +3,15 @@ import TodoList from "./TodoList.jsx";
 import AddTodoForm from "./AddTodoForm.jsx";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import styles from "./App.module.css";
 // const title = 'React';
 
 function App() {
   let onLoadList = JSON.parse(localStorage.getItem("savedTodoList"));
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "#3657EB";
+  }, []);
 
   const [todoList, setTodoList] = useState(onLoadList || []);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,14 +60,18 @@ function App() {
     }
   }, [todoList, isLoading]);
 
-  const addTodo = (newTodo) => {
-    //... look up spread operator
-    setTodoList([...todoList, newTodo]);
+  const handleTodoAdded = () => {
+    fetchData(); // Re-fetch data when a new todo is added
   };
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(newTodoList);
-  };
+
+  // const addTodo = (newTodo) => {
+  //   //... look up spread operator
+  //   setTodoList([...todoList, newTodo]);
+  // };
+  // const removeTodo = (id) => {
+  //   const newTodoList = todoList.filter((todo) => todo.id !== id);
+  //   setTodoList(newTodoList);
+  // };
 
   return (
     <BrowserRouter>
@@ -71,16 +79,18 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
-              <h1>Todo List</h1>
-              <AddTodoForm onAddTodo={addTodo} />
+            <div className={styles.todoModule} id={styles.title}>
+              <h1 className="indexText" id={styles.headerBG}>
+                Todo List
+              </h1>
+              <AddTodoForm onAddTodo={handleTodoAdded} />
 
               {isLoading ? (
-                <p>Loading...</p>
+                <p className="indexText">Loading...</p>
               ) : (
                 <TodoList
                   todoList={todoList}
-                  onRemoveTodo={removeTodo}
+                  onListUpdated={handleTodoAdded}
                 />
               )}
               <Search />
@@ -107,7 +117,9 @@ function Search() {
 
   return (
     <>
-      <label htmlFor="search">Search: </label>
+      <label className="indexText" htmlFor="search">
+        Search:{" "}
+      </label>
       <input
         id="search"
         type="text"
