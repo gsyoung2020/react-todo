@@ -1,0 +1,45 @@
+:global .indexText {
+  color: rgb(107, 192, 205);
+  font-family: "Corben", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0%;
+}
+
+.todoModule {
+  margin: auto;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em;
+  border: 22px solid rgb(43, 43, 43);
+  text-align: center;
+  box-shadow: -12px 9px 8px 0px rgba(0, 0, 0, 0.75);
+  /* min-height: 100vh; Breaks it why tho? */
+}
+
+#title {
+  background-color: rgb(108, 108, 108);
+  border-radius: 60px;
+  position: relative;
+  margin-top: 5%;
+}
+
+#headerBG {
+  background-color: rgb(52, 52, 52);
+  border: 10px solid rgb(43, 43, 43);
+  border-radius: 60px;
+  width: 50%;
+  position: relative;
+  margin: auto;
+}
+
+/* @media (max-width: 768px) {
+  #title {
+    background-color: cadetblue;
+    border-radius: 60px;
+    position: relative;
+    left: 4.4%;
+  }
+} */

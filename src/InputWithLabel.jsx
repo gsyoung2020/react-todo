@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
+import styles from "./App.module.css";
 export default function InputWithLabel({
   todoTitle,
   handleTitleChange,
@@ -11,7 +12,9 @@ export default function InputWithLabel({
   });
   return (
     <>
-      <label htmlFor="todoTitle">{children}</label>
+      <label htmlFor="todoTitle">
+        <p className="indexText">{children}</p>
+      </label>
       <input
         ref={inputRef}
         type="text"
