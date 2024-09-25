@@ -1,9 +1,10 @@
 import * as React from "react";
-import TodoList from "./TodoList.jsx";
-import AddTodoForm from "./AddTodoForm.jsx";
+import TodoList from "./components/TodoList";
+import AddTodoForm from "./components/AddTodoForm.jsx";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styles from "./App.module.css";
+
 // const title = 'React';
 
 function App() {

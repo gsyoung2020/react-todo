@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from "react";
-import styles from "./App.module.css";
+import { Children, useEffect, useRef } from "react";
+import styles from "../App.module.css";
+import PropTypes from "prop-types";
+
 export default function InputWithLabel({
   todoTitle,
   handleTitleChange,
@@ -26,3 +28,9 @@ export default function InputWithLabel({
     </>
   );
 }
+
+InputWithLabel.proptype = {
+  children: PropTypes.string.isRequired,
+  todoTitle: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+};

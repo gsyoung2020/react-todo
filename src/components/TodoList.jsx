@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import TodoListItem from "./TodoListItem";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 export default function TodoList({ todoList, onListUpdated }) {
   const [confirmingId, setConfirmingId] = useState(null);
@@ -54,3 +54,8 @@ export default function TodoList({ todoList, onListUpdated }) {
     </ul>
   );
 }
+
+TodoList.propTypes = {
+  todoList: PropTypes.array,
+  onListUpdated: PropTypes.func,
+};

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import styles from "./TodoListItem.module.css";
+import PropTypes from "prop-types";
 
 function TodoListItem({
   todo,
@@ -41,3 +41,11 @@ function TodoListItem({
 
 export default TodoListItem;
 //onClick={() => onRemoveTodo(todo.id)}
+
+TodoListItem.propTypes = {
+  todo: PropTypes.string,
+  isConfirming: PropTypes.any,
+  onDeleteClick: PropTypes.func,
+  onCancelDelete: PropTypes.func,
+  onConfirmDelete: PropTypes.func,
+};

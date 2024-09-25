@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import PropTypes from "prop-types";
 
 export default function AddTodoForm({ onAddTodo }) {
   const [todoTitle, setTodoTitle] = useState("");
@@ -72,3 +71,6 @@ export default function AddTodoForm({ onAddTodo }) {
 //   });
 //   setTodoTitle("");
 // };
+AddTodoForm.propTypes = {
+  onAddTodo: PropTypes.func.isRequired,
+};
