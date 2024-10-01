@@ -1,5 +1,6 @@
 .ListItem {
   align-items: center;
+  justify-content: center;
   color: #1a1a1a;
   padding: 0.5rem;
   list-style: none;
@@ -10,6 +11,8 @@
   box-shadow: 7px 7px 0px 0px rgba(54, 87, 235, 1);
   font-weight: bold;
   font-size: 18px;
+  display: flex;
+  gap: 10px;
 }
 
 /* CSS */
@@ -25,17 +28,19 @@
   padding: 0.25em 0.5em;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px,
     4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
-  bottom: 3px;
+  touch-action: auto;
 }
 
 .button54:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;
+}
+
+.button54:hover {
+  background-color: aquamarine;
 }
 
 @media (min-width: 768px) {

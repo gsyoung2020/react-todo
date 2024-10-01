@@ -10,10 +10,6 @@ import styles from "./App.module.css";
 function App() {
   let onLoadList = JSON.parse(localStorage.getItem("savedTodoList"));
 
-  useEffect(() => {
-    document.body.style.backgroundColor = "#3657EB";
-  }, []);
-
   const [todoList, setTodoList] = useState(onLoadList || []);
   const [isLoading, setIsLoading] = useState(true);
 

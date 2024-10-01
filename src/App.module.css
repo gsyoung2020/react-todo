@@ -35,11 +35,35 @@
   margin: auto;
 }
 
-/* @media (max-width: 768px) {
+body {
+  background-color: #3657eb;
+}
+/*Tablet Horizontal*/
+@media (max-width: 1080px) {
   #title {
-    background-color: cadetblue;
+    background-color: rgb(240, 65, 6);
     border-radius: 60px;
     position: relative;
     left: 4.4%;
   }
-} */
+}
+
+/*Tablet Vertical*/
+@media (max-width: 810px) {
+  #title {
+    background-color: rgb(6, 240, 205);
+    border-radius: 60px;
+    position: relative;
+    left: 4.4%;
+  }
+}
+
+/*Cellphone Horizontal*/
+@media (max-width: 450px) {
+  #title {
+    background-color: rgb(0, 255, 115);
+    border-radius: 60px;
+    position: relative;
+    left: 4.4%;
+  }
+}

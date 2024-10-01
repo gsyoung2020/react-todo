@@ -30,7 +30,6 @@ function TodoListItem({
       {todo.title}{" "}
       <button
         className={styles.button54}
-        type="button"
         onClick={() => onDeleteClick(todo.id)}
       >
         Remove
