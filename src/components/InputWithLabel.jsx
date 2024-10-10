@@ -11,7 +11,7 @@ export default function InputWithLabel({
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, []);
   return (
     <>
       <label htmlFor="todoTitle">
@@ -30,7 +30,7 @@ export default function InputWithLabel({
 }
 
 InputWithLabel.proptype = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   todoTitle: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
 };

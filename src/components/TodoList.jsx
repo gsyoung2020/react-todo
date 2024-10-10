@@ -56,6 +56,6 @@ export default function TodoList({ todoList, onListUpdated }) {
 }
 
 TodoList.propTypes = {
-  todoList: PropTypes.array,
+  todoList: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onListUpdated: PropTypes.func,
 };

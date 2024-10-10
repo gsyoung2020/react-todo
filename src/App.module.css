@@ -4,11 +4,26 @@
   font-weight: 400;
   font-style: normal;
   margin: 0%;
+  /*font-size: 1.7vw;*/
+  font-size: min(50vw, 25px);
+}
+
+:global .headerText {
+  color: rgb(107, 192, 205);
+  font-family: "Corben", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0%;
+}
+
+input[type="text"] {
+  font-size: 14px;
 }
 
 .todoModule {
   margin: auto;
-  width: 30%;
+  width: 30vw;
+  min-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +38,7 @@
   background-color: rgb(108, 108, 108);
   border-radius: 60px;
   position: relative;
-  margin-top: 5%;
+  margin-top: 3vh;
 }
 
 #headerBG {
@@ -43,9 +58,20 @@ body {
   #title {
     background-color: rgb(240, 65, 6);
     border-radius: 60px;
-    position: relative;
-    left: 4.4%;
   }
+
+  .todoModule {
+    margin: auto;
+    width: 50%;
+    min-width: 30vw;
+  }
+
+  input[type="text"] {
+    font-size: 18px;
+  }
+  /* :global .indexText {
+    font-size: 2.5vw;
+  }*/
 }
 
 /*Tablet Vertical*/
@@ -53,17 +79,33 @@ body {
   #title {
     background-color: rgb(6, 240, 205);
     border-radius: 60px;
-    position: relative;
-    left: 4.4%;
+  }
+
+  .todoModule {
+    margin: auto;
+    width: 50%;
+    min-width: 30vw;
   }
 }
 
 /*Cellphone Horizontal*/
-@media (max-width: 450px) {
+@media (max-width: 500px) {
   #title {
-    background-color: rgb(0, 255, 115);
+    background-color: rgb(255, 77, 252);
     border-radius: 60px;
-    position: relative;
-    left: 4.4%;
   }
+
+  .todoModule {
+    margin: auto;
+    width: 60%;
+    min-width: 65vw;
+    left: 1%;
+  }
+  input[type="text"] {
+    font-size: 16px;
+  }
+
+  /*#headerBG {
+    width: 60vw;
+  }*/
 }
