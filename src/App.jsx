@@ -1,7 +1,10 @@
 import * as React from "react";
-import TodoList from "./TodoList.jsx";
-import AddTodoForm from "./AddTodoForm.jsx";
+import TodoList from "./components/TodoList";
+import AddTodoForm from "./components/AddTodoForm.jsx";
+import Search from "./Search.jsx";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from "./App.module.css";
 
 // const title = 'React';
 
@@ -11,10 +14,30 @@ function App() {
   const [todoList, setTodoList] = useState(onLoadList || []);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [filteredTodos, setFilteredTodos] = useState(todoList);
+
+  useEffect(() => {
+    setFilteredTodos(todoList);
+  }, [todoList]);
+
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setFilteredTodos(todoList);
+    } else {
+      const filtered = todoList.filter((todo) =>
+        todo.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredTodos(filtered);
+    }
+  };
+
   async function fetchData() {
+    const query1 = "?view=Grid%20view";
+    const query2 = "&sort[0][field]=title";
+    const query3 = "&sort[0][direction]=asc";
     const url = `https://api.airtable.com/v0/${
       import.meta.env.VITE_AIRTABLE_BASE_ID
-    }/${import.meta.env.VITE_TABLE_NAME}`;
+    }/${import.meta.env.VITE_TABLE_NAME}${query1 + query2 + query3}`;
     let options = {
       method: "GET",
       headers: {
@@ -36,7 +59,17 @@ function App() {
         };
         return newTodo;
       });
-      console.log(todos);
+      console.log("data:", todos);
+      var sortedTodos = todos;
+      sortedTodos.sort((objA, objB) => {
+        if (objA.title < objB.title) {
+          return 1;
+        } else if (objA.title > objB.title) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
@@ -55,52 +88,46 @@ function App() {
     }
   }, [todoList, isLoading]);
 
-  const addTodo = (newTodo) => {
-    //... look up spread operator
-    setTodoList([...todoList, newTodo]);
+  const handleTodoAdded = () => {
+    fetchData(); // Re-fetch data when a new todo is added
   };
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(newTodoList);
-  };
+
+  // const addTodo = (newTodo) => {
+  //   //... look up spread operator
+  //   setTodoList([...todoList, newTodo]);
+  // };
+  // const removeTodo = (id) => {
+  //   const newTodoList = todoList.filter((todo) => todo.id !== id);
+  //   setTodoList(newTodoList);
+  // };
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className={styles.todoModule} id={styles.title}>
+              <h1 className="headerText" id={styles.headerBG}>
+                Todo List
+              </h1>
+              <AddTodoForm onAddTodo={handleTodoAdded} />
 
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-      <Search />
-    </>
-  );
-}
-
-function Search() {
-  const handleChange = (event) => {
-    console.log(event);
-    console.log(event.target.value);
-  };
-
-  const blur = (event) => {
-    console.log(event);
-    console.log(event.target.value);
-    console.log("blur");
-  };
-
-  return (
-    <>
-      <label htmlFor="search">Search: </label>
-      <input
-        id="search"
-        type="text"
-        onChange={handleChange}
-        onBlur={blur}
-      />
-    </>
+              {isLoading ? (
+                <p className="indexText">Loading...</p>
+              ) : (
+                <TodoList
+                  todoList={filteredTodos}
+                  onListUpdated={handleTodoAdded}
+                />
+              )}
+              <Search onSearch={handleSearch} />
+            </div>
+          }
+        ></Route>
+        <Route path="/new" element={<h1>New Todo List</h1>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
