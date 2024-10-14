@@ -8,6 +8,7 @@ function TodoListItem({
   onCancelDelete,
   onConfirmDelete,
 }) {
+  //console.log(isConfirming);
   if (isConfirming) {
     return (
       <li className={styles.ListItem}>
@@ -43,7 +44,7 @@ export default TodoListItem;
 
 TodoListItem.propTypes = {
   todo: PropTypes.string,
-  isConfirming: PropTypes.any,
+  isConfirming: PropTypes.bool,
   onDeleteClick: PropTypes.func,
   onCancelDelete: PropTypes.func,
   onConfirmDelete: PropTypes.func,

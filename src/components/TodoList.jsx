@@ -1,5 +1,5 @@
 import TodoListItem from "./TodoListItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function TodoList({ todoList, onListUpdated }) {
