@@ -1,0 +1,63 @@
+.ListItem {
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  padding: 0.5rem;
+  list-style: none;
+  background-color: #84d8eb;
+  border: 5px solid #84d8eb;
+  margin-top: 1em;
+  border-radius: 4em;
+  box-shadow: 7px 7px 0px 0px rgba(54, 87, 235, 1);
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  gap: 10px;
+}
+
+/* CSS */
+.button54 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px,
+    4px 4px 0px 0px, 5px 5px 0px 0px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.3 ease;
+}
+
+.button54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+  transform: translateY(2px);
+}
+
+.button54:hover,
+.button54:focus {
+  background-color: aquamarine;
+  outline: none;
+}
+
+:global .ulTodoList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .button54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+@media (max-width: 500px) {
+}

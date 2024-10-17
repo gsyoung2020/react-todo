@@ -1,0 +1,63 @@
+/* CSS */
+.button59 {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  /*height: 48px;*/
+  margin-left: 5px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 100px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button59:focus {
+  color: #171e29;
+}
+
+.button59:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.button59:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+/*Tablet Horizontal*/
+@media (max-width: 1080px) {
+  .button59 {
+    position: relative;
+    top: -1.1px;
+  }
+}
+
+/*Tablet Vertical*/
+@media (max-width: 810px) {
+}
+
+/*Cellphone Horizontal*/
+@media (max-width: 665px) {
+  .button59 {
+    margin-top: 10px;
+  }
+}
